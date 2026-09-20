@@ -6,7 +6,7 @@ export const personalInfo = {
   profile: [
     'Student in Computer Engineering',
     'ESPRIT (Private Higher School of Engineering and Technology)',
-    '2nd year Engineering Cycle (2025/2026)',
+    '3rd year Engineering Cycle (2025/2026)',
     'Scientific Baccalaureate (2022)',
   ],
 }
