@@ -1,0 +1,124 @@
+PARCOURS AVEC L'INTELLIGENCE ARTIFICIELLE
+Missaoui Mourad
+https://github.com/mouradmissa
+
+Ce texte reprend les README des projets. Deux sortes de modèles y apparaissent.
+Un modèle personnalisé est entraîné dans le projet, puis enregistré (fichier .pkl ou .joblib).
+Un modèle intégré est un modèle déjà publié : on le télécharge ou on l'appelle, sans réentraîner ses poids. La personnalisation se fait par les phrases, les fiches, les consignes et les garde-fous.
+
+
+================================================================================
+1. MODÈLES PERSONNALISÉS
+================================================================================
+
+Projet ML — dépôts personnels
+https://github.com/mouradmissa/Segmentation-du-Risque-Projet
+https://github.com/mouradmissa/projet-ML
+Jeu : environ 300 tâches de gestion de projet.
+
+Segmentation du risque (cible Risk_Level : faible, moyen, élevé)
+- K plus proches voisins, avec mise à l'échelle et réduction de dimensions. Accuracy d'environ 77 % sur le test.
+- Arbre de décision, élagué. Accuracy d'environ 95 %.
+- Forêt aléatoire, réglages cherchés par validation croisée. Accuracy d'environ 97 %.
+Les trois sont comparés côte à côte, avec un vote majoritaire.
+
+Prédiction de l'avancement (cible Progress)
+- Forêt aléatoire, régression.
+- Régression linéaire.
+
+Recommandation de priorité (faible, moyenne, élevée)
+- K plus proches voisins.
+- Forêt aléatoire.
+
+Recommandation d'assignation (à qui confier la tâche)
+- Forêt aléatoire multi-classes. Le modèle renvoie les personnes les plus probables.
+
+Outils : Python, pandas, scikit-learn, Flask. Chaque modèle est sauvé puis rechargé par une interface.
+
+MediConnect — modèles appris du projet d'équipe
+https://github.com/smailch/Esprit-django--5TWIN1-2027-MediConnect
+Entraînés sur des phrases générées, sans dossier de vrais patients. Petits fichiers versionnés dans le dépôt. Ils tournent sur le serveur, sans carte graphique.
+- Orientation vers une spécialité : TF-IDF puis régression logistique. Neuf spécialités. Environ 93 % sur 30 phrases écrites à la main.
+- Lecture du texte du triage : TF-IDF puis régression logistique. Niveau d'urgence de 1 à 5. Environ 90 % de niveaux exacts sur 39 phrases écrites à la main.
+Ils peuvent relever l'urgence, jamais la baisser. Un cas vital reste décidé par les règles, puis par le médecin.
+
+PharmaSémantique — modèles d'intention du projet d'équipe
+https://github.com/smailch/Esprit-WEB_S--5TWIN1-2027--Pharmacy
+- PharmaNLU-A (molécules et médicaments) : TF-IDF de mots et de caractères, puis régression logistique, 12 intentions. Environ 97 % d'intentions justes sur 96 questions écrites à la main. Fichier pharmanlu_intent_v1.joblib.
+- Assistant santé (pathologies et personnes) : TF-IDF puis régression logistique, 14 intentions, entraîné sur 232 exemples. 100 % sur 78 questions de test, intention, entités et résultat SPARQL compris.
+Le module effets et contre-indications ne réentraîne pas de classifieur : l'intention y est obtenue par des règles, avec Qwen en secours (voir modèles intégrés).
+
+
+================================================================================
+2. MODÈLES INTÉGRÉS
+================================================================================
+
+Langue française, local, commun à PharmaSémantique
+- spaCy 3.8, modèle fr_core_news_sm. Découpe, lemmes, repérage des noms de médicaments et de pathologies déjà présents dans l'ontologie. S'il manque, un parcours lexical prend le relais. Aucun appel réseau.
+
+Grand modèle de langue, local
+- Qwen2.5 3B Instruct, via Ollama (qwen2.5:3b, environ 1,9 Go). Tient sur la carte GTX 1650.
+  PharmaSémantique, module effets et contre-indications : il doit rendre une seule requête SPARQL. La requête est contrôlée avant exécution. S'il est absent, les règles répondent.
+  MediConnect : même modèle proposé en local pour relire un texte de symptômes. Le texte est anonymisé. Le modèle ne décide pas d'un cas vital.
+
+Grands modèles appelés à distance
+- Gemini, gemini-3.5-flash-lite, par défaut dans MediConnect et dans TexTileCycle.
+- Qwen hébergé chez Groq, qwen/qwen3.8-27b, autre fournisseur possible de MediConnect.
+- OpenAI, secours de l'analyse photo d'un vêtement dans TexTileCycle si Gemini ne répond pas.
+
+Vision et recherche de textes, locaux, TexTileCycle
+Microservice ia-diagnostic. Aucun de ces trois modèles n'est réentraîné. On compare une photo ou une question à des phrases écrites pour le métier (classification sans réapprentissage, recherche dans des fiches).
+- clip-ViT-B-32, environ 580 Mo. La photo d'un vêtement abîmé est comparée à des descriptions de défauts.
+- clip-ViT-B-32-multilingual-v1, environ 520 Mo. Prend en compte la précision écrite en français par le citoyen.
+- paraphrase-multilingual-MiniLM-L12-v2, environ 460 Mo. Cherche la bonne fiche parmi 21 conseils de réparation.
+Mesures du README : sur 11 photos, le bon service est dans les trois premiers dans tous les cas, en premier dans 64 % des cas, et dans 91 % des cas si le citoyen ajoute une phrase. Sur 10 questions nouvelles, la bonne fiche est première 9 fois sur 10.
+
+
+================================================================================
+3. PARCOURS
+================================================================================
+
+Le fil va des modèles que l'on entraîne soi-même vers des modèles déjà faits, que l'on branche dans une application avec une limite explicite.
+
+Étape 1 — Apprendre à entraîner et à comparer
+Segmentation du risque, puis le projet ML élargi.
+Quatre questions sur les mêmes données : le risque, l'avancement, la priorité, la personne à qui assigner la tâche.
+Pour chaque question, un ou plusieurs algorithmes, les mêmes étapes (nettoyer, encoder, séparer, entraîner, mesurer), puis une page Flask qui charge le fichier du modèle.
+C'est ici que sont les modèles personnalisés dont je suis l'auteur sur GitHub.
+
+Étape 2 — Brancher des modèles déjà entraînés dans un service
+TexTileCycle, module ateliers et module vêtements.
+Le diagnostic photo ne réapprend pas CLIP. Il compare l'image à un vocabulaire de défauts, puis relie le défaut aux services des ateliers.
+L'assistant de réparation cherche d'abord dans 21 fiches avec MiniLM et des mots-clés, puis Gemini rédige en citant ces fiches. Sans clé, les fiches s'affichent telles quelles. Une question hors textile n'appelle pas le modèle.
+L'assistant de l'espace atelier laisse Gemini choisir un outil parmi six. Laravel lit les données et rédige la réponse. Une consigne cachée dans la question est ignorée.
+Sur les vêtements, Gemini (OpenAI en secours) lit la photo au moment de la déclaration, propose un style de réparation et peut produire un rendu. Une gravité sévère force le verdict « irrécupérable », même si le modèle est optimiste.
+Le conseiller textile ne répond qu'aux questions de réparation, de don, de recyclage et d'entretien, et seulement à partir des pièces du citoyen, sans photo.
+
+Étape 3 — Modèles courts entraînés par l'équipe, et un grand modèle tenu à distance du diagnostic
+MediConnect.
+Deux petits modèles personnalisés (TF-IDF et régression logistique) orientent vers une spécialité et proposent un niveau d'urgence à partir du texte. Ils complètent des règles. Ils ne remplacent pas le médecin.
+Dans l'espace médecin, Gemini prépare la téléconsultation : un résumé, des points d'attention, des questions à poser. Le message ne contient ni nom, ni téléphone, ni adresse. Le modèle ne pose pas de diagnostic, ne rédige pas d'ordonnance et ne change pas le niveau d'urgence.
+Qwen peut remplacer Gemini, en local avec Ollama ou à distance avec Groq.
+
+Étape 4 — Du français vers une requête contrôlée
+PharmaSémantique, données fictives, sans conseil médical.
+Deux modèles personnalisés de l'équipe classent l'intention d'une question (PharmaNLU-A et l'assistant santé). spaCy fr_core_news_sm fournit les lemmes et repère les noms qui existent déjà dans l'ontologie.
+Mon module, effets secondaires et contre-indications, interroge le graphe RDF. Qwen2.5 3B, en local, doit proposer une seule requête SPARQL. Elle est refusée si elle modifie les données. Si Qwen est absent, des règles et spaCy produisent la requête. Si la question n'est pas comprise, aucune requête n'est fabriquée.
+
+
+================================================================================
+4. EN UNE PAGE
+================================================================================
+
+Modèles personnalisés, entraînés dans les projets
+- Gestion de projet : KNN, arbre de décision, forêt aléatoire, régression linéaire. Risque, avancement, priorité, assignation.
+- MediConnect : deux régressions logistiques TF-IDF. Spécialité et niveau d'urgence.
+- PharmaSémantique : deux régressions logistiques TF-IDF. Intention d'une question en français.
+
+Modèles intégrés, utilisés tels quels
+- CLIP et CLIP multilingue, MiniLM : photo de vêtement et recherche de fiches.
+- spaCy fr_core_news_sm : français de l'ontologie pharmaceutique.
+- Qwen2.5 3B en local, Qwen chez Groq, Gemini, OpenAI en secours : rédaction, préparation de consultation, traduction d'une question en SPARQL.
+
+Ce que le parcours répète
+Le modèle rend un résultat que l'on peut vérifier : une classe et son score, une fiche citée, une requête affichée. Il ne décide pas d'un cas vital, il ne pose pas de diagnostic, et il n'écrit pas une requête si la question n'a pas été comprise.
