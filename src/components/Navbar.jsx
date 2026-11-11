@@ -1,15 +1,8 @@
 import { useEffect, useState } from 'react'
-
-const navItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Contact', href: '#contact' },
-]
+import { useLanguage } from '../i18n/LanguageContext'
 
 function Navbar() {
+  const { t, lang, setLang } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [narrow, setNarrow] = useState(
@@ -59,34 +52,54 @@ function Navbar() {
         <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
           M.
         </a>
-        <button
-          type="button"
-          className={`nav-toggle ${menuOpen ? 'nav-toggle-open' : ''}`}
-          aria-expanded={menuOpen}
-          aria-controls="main-nav-panel"
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
-          <span className="nav-toggle-bar" aria-hidden />
-          <span className="nav-toggle-bar" aria-hidden />
-          <span className="nav-toggle-bar" aria-hidden />
-        </button>
+        <div className="nav-actions">
+          <div className="lang-switch" role="group" aria-label="Language">
+            <button
+              type="button"
+              className={`lang-btn ${lang === 'fr' ? 'lang-btn-active' : ''}`}
+              onClick={() => setLang('fr')}
+              aria-pressed={lang === 'fr'}
+            >
+              FR
+            </button>
+            <button
+              type="button"
+              className={`lang-btn ${lang === 'en' ? 'lang-btn-active' : ''}`}
+              onClick={() => setLang('en')}
+              aria-pressed={lang === 'en'}
+            >
+              EN
+            </button>
+          </div>
+          <button
+            type="button"
+            className={`nav-toggle ${menuOpen ? 'nav-toggle-open' : ''}`}
+            aria-expanded={menuOpen}
+            aria-controls="main-nav-panel"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span className="sr-only">{menuOpen ? t.menuClose : t.menuOpen}</span>
+            <span className="nav-toggle-bar" aria-hidden />
+            <span className="nav-toggle-bar" aria-hidden />
+            <span className="nav-toggle-bar" aria-hidden />
+          </button>
+        </div>
         {menuOpen ? (
           <button
             type="button"
             className="nav-backdrop"
-            aria-label="Close menu"
+            aria-label={t.menuClose}
             onClick={() => setMenuOpen(false)}
           />
         ) : null}
         <nav
           id="main-nav-panel"
           className={`nav-panel ${menuOpen ? 'nav-panel-open' : ''}`}
-          aria-label="Main navigation"
+          aria-label={t.navAria}
           inert={narrow && !menuOpen}
         >
           <ul className="nav-links">
-            {navItems.map((item) => (
+            {t.nav.map((item) => (
               <li key={item.href}>
                 <a href={item.href} onClick={() => setMenuOpen(false)}>
                   {item.label}

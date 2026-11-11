@@ -1,8 +1,12 @@
+import { useLanguage } from '../i18n/LanguageContext'
+
 function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="footer">
       <div className="container">
-        <p>© {new Date().getFullYear()} Missaoui Mourad — Full-Stack Developer</p>
+        <p>{t.footer.replace('{year}', String(new Date().getFullYear()))}</p>
       </div>
     </footer>
   )

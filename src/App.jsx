@@ -6,18 +6,20 @@ import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import { projects, skillGroups, experiences } from './data/portfolioData'
+import { useLanguage } from './i18n/LanguageContext'
 
 function App() {
+  const { t } = useLanguage()
+
   return (
     <>
       <Navbar />
       <main>
         <Hero />
         <About />
-        <Experience experiences={experiences} />
-        <Projects projects={projects} />
-        <Skills skillGroups={skillGroups} />
+        <Experience experiences={t.experiences} />
+        <Projects projects={t.projects} />
+        <Skills skillGroups={t.skillGroups} />
         <Contact />
       </main>
       <Footer />

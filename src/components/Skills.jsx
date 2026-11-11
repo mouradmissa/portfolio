@@ -1,13 +1,16 @@
 import SectionTitle from './SectionTitle'
 import Reveal from './Reveal'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function Skills({ skillGroups }) {
+  const { t } = useLanguage()
+
   return (
     <section id="skills" className="section">
       <div className="container">
         <Reveal>
-          <SectionTitle eyebrow="Skills" title="Technical capabilities" />
+          <SectionTitle eyebrow={t.skills.eyebrow} title={t.skills.title} />
         </Reveal>
         <div className="skills-grid">
           {skillGroups.map((group, index) => (

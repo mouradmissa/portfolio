@@ -1,26 +1,29 @@
 import SectionTitle from './SectionTitle'
 import Reveal from './Reveal'
-import { personalInfo } from '../data/portfolioData'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function Contact() {
+  const { t } = useLanguage()
+  const { personalInfo, contact } = t
+
   return (
     <section id="contact" className="section">
       <div className="container contact-content">
         <Reveal>
-          <SectionTitle eyebrow="Contact" title="Let’s build something impactful" />
+          <SectionTitle eyebrow={contact.eyebrow} title={contact.title} />
         </Reveal>
         <Reveal className="card glass contact-card" delay={0.08}>
           <ul className="contact-list">
             <li>
-              <span>Phone</span>
+              <span>{contact.phone}</span>
               <a href={`tel:${personalInfo.phone.replace(/\s+/g, '')}`}>{personalInfo.phone}</a>
             </li>
             <li>
-              <span>Email</span>
+              <span>{contact.email}</span>
               <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
             </li>
             <li>
-              <span>Location</span>
+              <span>{contact.location}</span>
               <p>{personalInfo.location}</p>
             </li>
           </ul>

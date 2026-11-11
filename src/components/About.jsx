@@ -1,13 +1,16 @@
 import SectionTitle from './SectionTitle'
 import Reveal from './Reveal'
-import { personalInfo } from '../data/portfolioData'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function About() {
+  const { t } = useLanguage()
+  const { personalInfo, about } = t
+
   return (
     <section id="about" className="section">
       <div className="container">
         <Reveal>
-          <SectionTitle eyebrow="Profile" title="Engineering student with product mindset" />
+          <SectionTitle eyebrow={about.eyebrow} title={about.title} />
         </Reveal>
         <div className="about-layout">
           <Reveal className="card glass" delay={0.06}>
@@ -20,17 +23,17 @@ function About() {
           </Reveal>
           <div className="meta-grid">
             <Reveal className="card glass meta-card" delay={0.1}>
-              <h3>Languages</h3>
+              <h3>{about.languagesTitle}</h3>
               <ul className="meta-list">
-                {personalInfo.languages.map((lang) => (
-                  <li key={lang.name}>
-                    <strong>{lang.name}</strong> — {lang.level}
+                {personalInfo.languages.map((langItem) => (
+                  <li key={langItem.name}>
+                    <strong>{langItem.name}</strong> — {langItem.level}
                   </li>
                 ))}
               </ul>
             </Reveal>
             <Reveal className="card glass meta-card" delay={0.14}>
-              <h3>Certification</h3>
+              <h3>{about.certificationTitle}</h3>
               <ul className="meta-list">
                 <li>
                   <strong>{personalInfo.certification.name}</strong>

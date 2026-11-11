@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
 import ProfileCard from './ProfileCard'
-import { personalInfo } from '../data/portfolioData'
+import { useLanguage } from '../i18n/LanguageContext'
 
 function Hero() {
+  const { t } = useLanguage()
+  const { personalInfo, hero } = t
+
   return (
     <section id="home" className="section hero">
       <div className="hero-gradient" />
@@ -14,9 +17,10 @@ function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Portfolio
+            {hero.kicker}
           </motion.p>
           <motion.h1
+            key={`name-${personalInfo.name}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1 }}
@@ -25,6 +29,7 @@ function Hero() {
           </motion.h1>
           <motion.p
             className="hero-role"
+            key={personalInfo.title}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.18 }}
@@ -38,6 +43,7 @@ function Hero() {
         <div className="hero-text hero-text-bottom">
           <motion.p
             className="hero-intro"
+            key={personalInfo.summary}
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.22 }}
@@ -51,10 +57,10 @@ function Hero() {
             transition={{ duration: 0.6, delay: 0.35 }}
           >
             <a href="#projects" className="btn-primary">
-              View Projects
+              {hero.ctaProjects}
             </a>
             <a href="#contact" className="btn-ghost">
-              Contact Me
+              {hero.ctaContact}
             </a>
           </motion.div>
         </div>
