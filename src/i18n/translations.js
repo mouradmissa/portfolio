@@ -12,6 +12,7 @@ export const translations = {
       { label: 'Expérience', href: '#experience' },
       { label: 'Projets', href: '#projects' },
       { label: 'Compétences', href: '#skills' },
+      { label: 'Parcours IA', href: '#ai-path' },
       { label: 'Contact', href: '#contact' },
     ],
     menuOpen: 'Ouvrir le menu',
@@ -39,6 +40,114 @@ export const translations = {
     skills: {
       eyebrow: 'Compétences',
       title: 'Capacités techniques',
+    },
+    aiPath: {
+      eyebrow: 'Parcours IA',
+      title: 'De l’entraînement à l’intégration maîtrisée',
+      intro:
+        'Le fil va des modèles que j’entraîne moi-même vers des modèles déjà publiés, branchés dans une application avec une limite explicite. Le modèle rend un résultat vérifiable : il ne décide pas d’un cas vital et ne pose pas de diagnostic.',
+      typesTitle: 'Deux types de modèles',
+      stepsTitle: 'Les 4 étapes',
+      customTitle: 'Modèles personnalisés',
+      integratedTitle: 'Modèles intégrés',
+      takeawayTitle: 'Ce que le parcours répète',
+      types: [
+        {
+          title: 'Modèles personnalisés',
+          description:
+            'Entraînés dans le projet, puis enregistrés (.pkl / .joblib). Je contrôle le jeu de données, l’algorithme et la mesure.',
+        },
+        {
+          title: 'Modèles intégrés',
+          description:
+            'Modèles déjà publiés : téléchargés ou appelés sans réentraîner les poids. Personnalisation via phrases, fiches, consignes et garde-fous.',
+        },
+      ],
+      steps: [
+        {
+          step: '01',
+          title: 'Entraîner et comparer',
+          project: 'Projet ML — Segmentation du risque',
+          points: [
+            'Quatre questions sur les mêmes données : risque, avancement, priorité, assignation',
+            'KNN, arbre de décision, forêt aléatoire, régression linéaire — accuracy jusqu’à ~97 %',
+            'Pipeline Flask : nettoyer, entraîner, mesurer, sauver et recharger le modèle',
+          ],
+          links: [
+            { label: 'Segmentation du risque', href: 'https://github.com/mouradmissa/Segmentation-du-Risque-Projet' },
+            { label: 'Projet ML', href: 'https://github.com/mouradmissa/projet-ML' },
+          ],
+        },
+        {
+          step: '02',
+          title: 'Brancher des modèles prêts',
+          project: 'TexTileCycle',
+          points: [
+            'CLIP compare une photo de vêtement à un vocabulaire de défauts (sans réapprentissage)',
+            'MiniLM cherche parmi 21 fiches de réparation ; Gemini rédige en citant ces fiches',
+            'Garde-fous : question hors textile sans appel modèle, gravité sévère force « irrécupérable »',
+          ],
+        },
+        {
+          step: '03',
+          title: 'Petits modèles + LLM tenu à distance',
+          project: 'MediConnect',
+          points: [
+            'Deux classifieurs TF-IDF + régression logistique : spécialité (~93 %) et urgence (~90 %)',
+            'Ils complètent des règles et ne remplacent pas le médecin',
+            'Gemini / Qwen préparent la téléconsultation sans diagnostic ni ordonnance',
+          ],
+          links: [
+            { label: 'MediConnect', href: 'https://github.com/smailch/Esprit-django--5TWIN1-2027-MediConnect' },
+          ],
+        },
+        {
+          step: '04',
+          title: 'Du français vers une requête contrôlée',
+          project: 'PharmaSémantique',
+          points: [
+            'Deux modèles d’intention TF-IDF (12 et 14 intentions) + spaCy fr_core_news_sm',
+            'Qwen2.5 3B local propose une seule requête SPARQL, refusée si elle modifie les données',
+            'Sans compréhension de la question : aucune requête n’est fabriquée',
+          ],
+          links: [
+            { label: 'PharmaSémantique', href: 'https://github.com/smailch/Esprit-WEB_S--5TWIN1-2027--Pharmacy' },
+          ],
+        },
+      ],
+      customModels: [
+        {
+          name: 'Gestion de projet',
+          detail: 'KNN, arbre, forêt aléatoire, régression linéaire — risque, avancement, priorité, assignation',
+        },
+        {
+          name: 'MediConnect',
+          detail: 'Deux régressions logistiques TF-IDF — spécialité et niveau d’urgence',
+        },
+        {
+          name: 'PharmaSémantique',
+          detail: 'Deux régressions logistiques TF-IDF — intention d’une question en français',
+        },
+      ],
+      integratedModels: [
+        {
+          name: 'CLIP + MiniLM',
+          detail: 'Photo de vêtement et recherche de fiches (TexTileCycle)',
+        },
+        {
+          name: 'spaCy fr_core_news_sm',
+          detail: 'Lemmes et entités pour l’ontologie pharmaceutique',
+        },
+        {
+          name: 'Qwen / Gemini / OpenAI',
+          detail: 'Rédaction, téléconsultation, traduction question → SPARQL — toujours avec garde-fous',
+        },
+      ],
+      takeaways: [
+        'Le modèle renvoie un résultat vérifiable : classe + score, fiche citée, requête affichée',
+        'Il ne décide pas d’un cas vital et ne pose pas de diagnostic',
+        'Il n’écrit pas de requête si la question n’a pas été comprise',
+      ],
     },
     contact: {
       eyebrow: 'Contact',
@@ -226,6 +335,7 @@ export const translations = {
       { label: 'Experience', href: '#experience' },
       { label: 'Projects', href: '#projects' },
       { label: 'Skills', href: '#skills' },
+      { label: 'AI Path', href: '#ai-path' },
       { label: 'Contact', href: '#contact' },
     ],
     menuOpen: 'Open menu',
@@ -253,6 +363,114 @@ export const translations = {
     skills: {
       eyebrow: 'Skills',
       title: 'Technical capabilities',
+    },
+    aiPath: {
+      eyebrow: 'AI Path',
+      title: 'From training to controlled integration',
+      intro:
+        'The path goes from models I train myself to published models wired into an app with explicit limits. The model returns a verifiable result: it does not decide a critical case and does not make a diagnosis.',
+      typesTitle: 'Two kinds of models',
+      stepsTitle: 'The 4 steps',
+      customTitle: 'Custom models',
+      integratedTitle: 'Integrated models',
+      takeawayTitle: 'What the path repeats',
+      types: [
+        {
+          title: 'Custom models',
+          description:
+            'Trained in the project, then saved (.pkl / .joblib). I control the dataset, the algorithm and the metrics.',
+        },
+        {
+          title: 'Integrated models',
+          description:
+            'Already published models: downloaded or called without retraining weights. Customization via prompts, sheets, instructions and guardrails.',
+        },
+      ],
+      steps: [
+        {
+          step: '01',
+          title: 'Train and compare',
+          project: 'ML Project — Risk segmentation',
+          points: [
+            'Four questions on the same data: risk, progress, priority, assignment',
+            'KNN, decision tree, random forest, linear regression — accuracy up to ~97%',
+            'Flask pipeline: clean, train, measure, save and reload the model',
+          ],
+          links: [
+            { label: 'Risk segmentation', href: 'https://github.com/mouradmissa/Segmentation-du-Risque-Projet' },
+            { label: 'ML project', href: 'https://github.com/mouradmissa/projet-ML' },
+          ],
+        },
+        {
+          step: '02',
+          title: 'Plug ready-made models',
+          project: 'TexTileCycle',
+          points: [
+            'CLIP compares a clothing photo to a defect vocabulary (no retraining)',
+            'MiniLM searches among 21 repair sheets; Gemini writes while citing those sheets',
+            'Guardrails: off-topic questions skip the model; severe damage forces “unrecoverable”',
+          ],
+        },
+        {
+          step: '03',
+          title: 'Small models + LLM kept at a distance',
+          project: 'MediConnect',
+          points: [
+            'Two TF-IDF + logistic regression classifiers: specialty (~93%) and urgency (~90%)',
+            'They complement rules and do not replace the doctor',
+            'Gemini / Qwen prepare teleconsultation without diagnosis or prescription',
+          ],
+          links: [
+            { label: 'MediConnect', href: 'https://github.com/smailch/Esprit-django--5TWIN1-2027-MediConnect' },
+          ],
+        },
+        {
+          step: '04',
+          title: 'From French to a controlled query',
+          project: 'PharmaSémantique',
+          points: [
+            'Two TF-IDF intent models (12 and 14 intents) + spaCy fr_core_news_sm',
+            'Local Qwen2.5 3B proposes a single SPARQL query, rejected if it modifies data',
+            'If the question is not understood: no query is built',
+          ],
+          links: [
+            { label: 'PharmaSémantique', href: 'https://github.com/smailch/Esprit-WEB_S--5TWIN1-2027--Pharmacy' },
+          ],
+        },
+      ],
+      customModels: [
+        {
+          name: 'Project management',
+          detail: 'KNN, tree, random forest, linear regression — risk, progress, priority, assignment',
+        },
+        {
+          name: 'MediConnect',
+          detail: 'Two TF-IDF logistic regressions — specialty and urgency level',
+        },
+        {
+          name: 'PharmaSémantique',
+          detail: 'Two TF-IDF logistic regressions — French question intent',
+        },
+      ],
+      integratedModels: [
+        {
+          name: 'CLIP + MiniLM',
+          detail: 'Clothing photo and sheet retrieval (TexTileCycle)',
+        },
+        {
+          name: 'spaCy fr_core_news_sm',
+          detail: 'Lemmas and entities for the pharmaceutical ontology',
+        },
+        {
+          name: 'Qwen / Gemini / OpenAI',
+          detail: 'Writing, teleconsultation, question → SPARQL — always with guardrails',
+        },
+      ],
+      takeaways: [
+        'The model returns a verifiable result: class + score, cited sheet, displayed query',
+        'It does not decide a critical case and does not make a diagnosis',
+        'It does not write a query if the question was not understood',
+      ],
     },
     contact: {
       eyebrow: 'Contact',

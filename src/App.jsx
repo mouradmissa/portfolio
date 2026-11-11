@@ -4,6 +4,7 @@ import About from './components/About'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import AiPath from './components/AiPath'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import { useLanguage } from './i18n/LanguageContext'
@@ -20,6 +21,7 @@ function App() {
         <Experience experiences={t.experiences} />
         <Projects projects={t.projects} />
         <Skills skillGroups={t.skillGroups} />
+        <AiPath />
         <Contact />
       </main>
       <Footer />
