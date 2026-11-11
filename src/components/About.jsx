@@ -9,13 +9,37 @@ function About() {
         <Reveal>
           <SectionTitle eyebrow="Profile" title="Engineering student with product mindset" />
         </Reveal>
-        <Reveal className="card glass" delay={0.08}>
-          <ul className="profile-list">
-            {personalInfo.profile.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </Reveal>
+        <div className="about-layout">
+          <Reveal className="card glass" delay={0.06}>
+            <p className="about-summary">{personalInfo.summary}</p>
+            <ul className="profile-list about-profile-list">
+              {personalInfo.profile.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </Reveal>
+          <div className="meta-grid">
+            <Reveal className="card glass meta-card" delay={0.1}>
+              <h3>Languages</h3>
+              <ul className="meta-list">
+                {personalInfo.languages.map((lang) => (
+                  <li key={lang.name}>
+                    <strong>{lang.name}</strong> — {lang.level}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal className="card glass meta-card" delay={0.14}>
+              <h3>Certification</h3>
+              <ul className="meta-list">
+                <li>
+                  <strong>{personalInfo.certification.name}</strong>
+                </li>
+                <li>{personalInfo.certification.detail}</li>
+              </ul>
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   )

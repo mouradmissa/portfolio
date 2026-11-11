@@ -7,7 +7,7 @@ function Contact() {
     <section id="contact" className="section">
       <div className="container contact-content">
         <Reveal>
-          <SectionTitle eyebrow="Contact" title="Let us build something impactful" />
+          <SectionTitle eyebrow="Contact" title="Let’s build something impactful" />
         </Reveal>
         <Reveal className="card glass contact-card" delay={0.08}>
           <ul className="contact-list">
@@ -18,6 +18,10 @@ function Contact() {
             <li>
               <span>Email</span>
               <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+            </li>
+            <li>
+              <span>Location</span>
+              <p>{personalInfo.location}</p>
             </li>
           </ul>
         </Reveal>

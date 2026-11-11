@@ -11,7 +11,11 @@ function Experience({ experiences }) {
         </Reveal>
         <div className="experience-grid">
           {experiences.map((item, index) => (
-            <ExperienceCard key={`${item.company}-${item.period}`} item={item} index={index} />
+            <ExperienceCard
+              key={`${item.company}-${item.period}-${item.role}`}
+              item={item}
+              index={index}
+            />
           ))}
         </div>
       </div>
