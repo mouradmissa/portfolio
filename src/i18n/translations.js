@@ -48,9 +48,40 @@ export const translations = {
         'Le fil va des modèles que j’entraîne moi-même vers des modèles déjà publiés, branchés dans une application avec une limite explicite. Le modèle rend un résultat vérifiable : il ne décide pas d’un cas vital et ne pose pas de diagnostic.',
       typesTitle: 'Deux types de modèles',
       stepsTitle: 'Les 4 étapes',
+      appsTitle: 'Applications du parcours — repos à tester',
       customTitle: 'Modèles personnalisés',
       integratedTitle: 'Modèles intégrés',
       takeawayTitle: 'Ce que le parcours répète',
+      apps: [
+        {
+          name: 'Segmentation du risque',
+          href: 'https://github.com/mouradmissa/Segmentation-du-Risque-Projet',
+        },
+        {
+          name: 'Projet ML',
+          href: 'https://github.com/mouradmissa/projet-ML',
+        },
+        {
+          name: 'TexTileCycle (équipe)',
+          href: 'https://github.com/smailch/Esprit-Applications-web-avanc-es-5TWIN1-2027-TexTileCycle',
+        },
+        {
+          name: 'TexTileCycle Laravel',
+          href: 'https://github.com/mouradmissa/TexTileCycle-Laravel',
+        },
+        {
+          name: 'MediConnect',
+          href: 'https://github.com/smailch/Esprit-django--5TWIN1-2027-MediConnect',
+        },
+        {
+          name: 'PharmaSémantique',
+          href: 'https://github.com/smailch/Esprit-WEB_S--5TWIN1-2027--Pharmacy',
+        },
+        {
+          name: 'Profil GitHub',
+          href: 'https://github.com/mouradmissa',
+        },
+      ],
       types: [
         {
           title: 'Modèles personnalisés',
@@ -86,6 +117,16 @@ export const translations = {
             'CLIP compare une photo de vêtement à un vocabulaire de défauts (sans réapprentissage)',
             'MiniLM cherche parmi 21 fiches de réparation ; Gemini rédige en citant ces fiches',
             'Garde-fous : question hors textile sans appel modèle, gravité sévère force « irrécupérable »',
+          ],
+          links: [
+            {
+              label: 'TexTileCycle (équipe)',
+              href: 'https://github.com/smailch/Esprit-Applications-web-avanc-es-5TWIN1-2027-TexTileCycle',
+            },
+            {
+              label: 'TexTileCycle Laravel',
+              href: 'https://github.com/mouradmissa/TexTileCycle-Laravel',
+            },
           ],
         },
         {
@@ -371,9 +412,40 @@ export const translations = {
         'The path goes from models I train myself to published models wired into an app with explicit limits. The model returns a verifiable result: it does not decide a critical case and does not make a diagnosis.',
       typesTitle: 'Two kinds of models',
       stepsTitle: 'The 4 steps',
+      appsTitle: 'Path applications — repos to test',
       customTitle: 'Custom models',
       integratedTitle: 'Integrated models',
       takeawayTitle: 'What the path repeats',
+      apps: [
+        {
+          name: 'Risk segmentation',
+          href: 'https://github.com/mouradmissa/Segmentation-du-Risque-Projet',
+        },
+        {
+          name: 'ML project',
+          href: 'https://github.com/mouradmissa/projet-ML',
+        },
+        {
+          name: 'TexTileCycle (team)',
+          href: 'https://github.com/smailch/Esprit-Applications-web-avanc-es-5TWIN1-2027-TexTileCycle',
+        },
+        {
+          name: 'TexTileCycle Laravel',
+          href: 'https://github.com/mouradmissa/TexTileCycle-Laravel',
+        },
+        {
+          name: 'MediConnect',
+          href: 'https://github.com/smailch/Esprit-django--5TWIN1-2027-MediConnect',
+        },
+        {
+          name: 'PharmaSémantique',
+          href: 'https://github.com/smailch/Esprit-WEB_S--5TWIN1-2027--Pharmacy',
+        },
+        {
+          name: 'GitHub profile',
+          href: 'https://github.com/mouradmissa',
+        },
+      ],
       types: [
         {
           title: 'Custom models',
@@ -409,6 +481,16 @@ export const translations = {
             'CLIP compares a clothing photo to a defect vocabulary (no retraining)',
             'MiniLM searches among 21 repair sheets; Gemini writes while citing those sheets',
             'Guardrails: off-topic questions skip the model; severe damage forces “unrecoverable”',
+          ],
+          links: [
+            {
+              label: 'TexTileCycle (team)',
+              href: 'https://github.com/smailch/Esprit-Applications-web-avanc-es-5TWIN1-2027-TexTileCycle',
+            },
+            {
+              label: 'TexTileCycle Laravel',
+              href: 'https://github.com/mouradmissa/TexTileCycle-Laravel',
+            },
           ],
         },
         {

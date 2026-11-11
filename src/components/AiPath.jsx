@@ -17,6 +17,21 @@ function AiPath() {
           <p>{ai.intro}</p>
         </Reveal>
 
+        <h3 className="ai-subtitle">{ai.appsTitle}</h3>
+        <Reveal className="ai-apps" delay={0.06}>
+          {ai.apps.map((app) => (
+            <a
+              key={app.href}
+              href={app.href}
+              target="_blank"
+              rel="noreferrer"
+              className="ai-link ai-app-link"
+            >
+              {app.name}
+            </a>
+          ))}
+        </Reveal>
+
         <h3 className="ai-subtitle">{ai.typesTitle}</h3>
         <div className="ai-types-grid">
           {ai.types.map((type, index) => (
